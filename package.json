@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-cloudwatch": "^3.454.0",
+    "@aws-sdk/client-ec2": "^3.458.0",
     "@aws-sdk/config-resolver": "^3.374.0",
     "aws-sdk": "^2.1501.0",
     "cors": "^2.8.5",
