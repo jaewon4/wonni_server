@@ -44,8 +44,9 @@ app.get("/sound/:name", (req, res) => {
   }
 });
 
-const { watchCPU } = require("./config/aws");
+const { watchCPU, watchNetwork } = require("./config/aws");
 watchCPU();
+watchNetwork();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
