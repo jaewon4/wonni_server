@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./.env.dev" });
+// require("dotenv").config({ path: "./.env.dev" });
 const { AWS_SECRET_KEY, AWS_ACCESS_KEY, AWS_REGION } = process.env;
 
 const { EC2Client, DescribeInstancesCommand } = require("@aws-sdk/client-ec2");
