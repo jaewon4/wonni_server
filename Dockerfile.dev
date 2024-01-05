@@ -1,0 +1,29 @@
+# Node.js 공식 이미지를 기반으로 설정합니다.
+FROM node:16-alpine
+
+# 앱 디렉토리를 만듭니다.
+WORKDIR /usr/src/app
+
+# 애플리케이션 의존성 파일을 앱 디렉토리로 복사합니다.
+# package.json 과 package-lock.json (있다면) 모두 복사합니다.
+COPY package*.json ./
+
+# 패키지를 설치합니다.
+RUN npm install
+
+# 앱 소스를 컨테이너에 복사합니다.
+COPY . .
+
+# 앱이 5555 포트에서 실행되므로, 외부에 이 포트를 열어줍니다.
+EXPOSE 5555
+
+# 환경변수 설정
+ENV NODE_ENV=development
+
+# 앱을 실행합니다.
+CMD [ "node", "index.js" ]
+
+# Command 순서
+# docker build -f Dockerfile.dev -t wonni-server . 
+# docker run -d -p 5555:5555 wonni-server  
+# docker run -d -p 5555:5555 --network="host" wonni-server
