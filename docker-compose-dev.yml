@@ -30,6 +30,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     volumes:
       - wonni-vol:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # 여기에 추가
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 10s
