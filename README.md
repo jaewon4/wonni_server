@@ -1,5 +1,9 @@
 # wonni_server
 
+## Architecture
+
+![Test Image](docs/img/architecture.png)
+
 ## Commit Message Convention
 
 ```
