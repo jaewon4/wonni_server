@@ -17,4 +17,9 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             whoami
-            touch test.txt
+            touch test2.txt
+            cd wonni_server
+            git checkout dev
+            git pull origin dev
+            docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d --build
+            touch test2.txt
