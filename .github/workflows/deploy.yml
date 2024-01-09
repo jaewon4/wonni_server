@@ -3,12 +3,6 @@ on:
   push:
     branches: ["dev"]
 jobs:
-  echo:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "${{ secrets.REMOTE_SSH_HOST }}"
-      - run: echo "${{ secrets.REMOTE_SSH_USERNAME }}"
-
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -23,8 +17,4 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             whoami
-            cd wonni_server
-            docker-compose --env-file .env.dev -f docker-compose-dev.yml build
-            echo "build done"
-            docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d
-            echo "up done"
+            touch test.txt
