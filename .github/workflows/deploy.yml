@@ -3,6 +3,12 @@ on:
   push:
     branches: ["dev"]
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ secrets.REMOTE_SSH_HOST }}"
+      - run: echo "${{ secrets.REMOTE_SSH_USERNAME }}"
+
   deploy:
     runs-on: ubuntu-latest
     steps:
