@@ -16,8 +16,26 @@ jobs:
           key: ${{ secrets.REMOTE_SSH_KEY }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
-            whoami
-            cd wonni_server
-            git checkout dev
-            git pull origin dev
-            sudo docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d --build
+            set -e # 스크립트에서 오류 발생 시 즉시 실패 처리
+
+            if ! cd wonni_server; then
+              echo "Failed to enter wonni_server directory"
+              exit 1
+            fi
+
+            if ! git checkout dev; then
+              echo "Failed to checkout dev branch"
+              exit 1
+            fi
+
+            if ! git pull origin dev; then
+              echo "Failed to pull from origin dev"
+              exit 1
+            fi
+
+            if ! sudo docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d --build; then
+              echo "Failed to start docker-compose"
+              exit 1
+            fi
+
+            echo "Deployment completed successfully"
