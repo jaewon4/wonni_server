@@ -18,5 +18,7 @@ jobs:
           script: |
             whoami
             cd wonni_server
-            docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d --build
-            echo "done"
+            docker-compose --env-file .env.dev -f docker-compose-dev.yml build
+            echo "build done"
+            docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d
+            echo "up done"
