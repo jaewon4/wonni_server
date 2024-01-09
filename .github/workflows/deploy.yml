@@ -1,0 +1,22 @@
+name: deploy
+on:
+  push:
+    branches: ["dev"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.3.0
+
+      - name: execute remote ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_SSH_HOST }}
+          username: ${{ secrets.REMOTE_SSH_USERNAME }}
+          key: ${{ secrets.REMOTE_SSH_KEY }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script: |
+            whoami
+            cd wonni_server
+            docker-compose --env-file .env.dev -f docker-compose-dev.yml up -d --build
+            echo "done"
